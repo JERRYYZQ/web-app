@@ -1,5 +1,5 @@
 $(function(){
-	//获取地址上的id
+	//获取地址上的id,title
 				function GetQueryString(name){
 				     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
 				     var r = window.location.search.substr(1).match(reg);
@@ -7,6 +7,8 @@ $(function(){
 			    }
 				//获取小说章节
 				var id=GetQueryString('id');
+				var title=GetQueryString('title');
+				title=decodeURIComponent(title);
 				$.getJSON("http://query.yahooapis.com/v1/public/yql",
 					{ q: "select * from json where url='http://api.zhuishushenqi.com/mix-atoc/"+id+"?view=chapters"+"'",format: "json"},
 					function(data){
@@ -59,6 +61,13 @@ $(function(){
 							})
 				}
 				//获取小说章节内容
+//				setTimeout(function(){
+//					var firstLink=$('#list').find('li:first').attr('data-link');
+//					var firstTitle=$('#list').find('span:first').text();
+//					
+//					console.log(firstLink.firstTitle);
+//					getContent(firstLink,firstTitle)
+//				},15000)
 				var isClick=true;
 				$('#list').on('touchstart','li',function(){
 					isClick=true;
@@ -68,8 +77,9 @@ $(function(){
 				})
 				var index;
 				$('#list').on('touchend','li',function(){
-					  index=$(this).index();
+					index=$(this).index();
 			        if(isClick){
+			        	    $(this).addClass('bag').siblings('li').removeClass('bag');
 							var lin=$(this).attr('data-link');
 							var hd=$(this).find('span').text();
 							lin=encodeURIComponent(lin);//编码
@@ -89,23 +99,23 @@ $(function(){
 					})
 					});
 		        };
-		createTable();
-			inser=function(){
-					db.transaction(function (tx) {
-				tx.executeSql(
-				"insert into bookcase (id) values(?)",
-				[id],
-					function () {  },
-					function (tx, error) { alert('已加入书架'); }
-				);
-				});
-			}
-			$("#mtui").on('touchend',function(){
-				inser();
-			})
+	         	createTable();
+				inser=function(){
+						db.transaction(function (tx) {
+					tx.executeSql(
+					"insert into bookcase (id) values(?)",
+					[id],
+						function () {  },
+						function (tx, error) { alert('已加入书架'); }
+					);
+					});
+				}
+				$("#mtui").on('touchend',function(){
+					inser();
+				})
 
 
-//小说阅读体验，设置
+			//小说阅读体验，设置
 			var n=0;
 			$('#ct').on('touchend',function(){
 				if(n%2==0){
@@ -117,13 +127,19 @@ $(function(){
 				}
 				n++;
 			})
-			//返回首页
-			$('#top1 span').on('touchend',function(){
-				location.href='../index.html'
+			//书名
+			$('#top1').text(title);
+			//点击短时间变色
+			$('#bottom').on('touchstart','li',function(){
+				$(this).addClass('bag');
+				var that=$(this);
+				$('#bottom').on('touchend',function(){
+					that.removeClass('bag');
+				})
 			})
 				//返回目录
 			$('#bottom #mml').on('touchend',function(){
-//				  window.location.reload();
+			// window.location.reload();
 				$("#link").show();
 				$("#conter").hide();
 				$('#ct').nextAll().hide()
@@ -148,11 +164,19 @@ $(function(){
 		    }
 		    })
 			//夜间模式
+			var ye=0;
 		    $(".yj").on('touchend',function(){
-		    		console.log('夜间')
-          	 $("body").css('backgroundColor','#000')
-          	 .css('color','#fff');
-               
+		    	if(ye%2==0){
+		    		$("body").css('backgroundColor','#000')
+		    		.css('color','#fff');
+		    		$('.yj').text('日间模式');
+		    	}
+		    	else{
+		    		$("body").css('backgroundColor','#fff')
+		    		.css('color','#000');
+		    		$('.yj').text('夜间模式');
+		    	}
+		    	ye++;
 		    })
 		    //点击设置出现
 		    $("#sz").on('touchend',function(){
@@ -165,36 +189,60 @@ $(function(){
 		    })
 		    //间距
 		    var jl=5;
+		    $("#jju").on('touchstart','span:first',function(){
+		    	$(this).addClass('bag');
+		    })
 		     $("#jju").on('touchend','span:first',function(){
-		     	console.log('间距减',jl)
+		     	$(this).removeClass('bag');
 		     	if(jl>0){
 			    	jl=parseInt(jl)-1;
 			    	$("#ct").css('letter-spacing',jl);
 		     	}
 		    	
 		    })
+		      $("#jju").on('touchstart','span:last',function(){
+		    	$(this).addClass('bag');
+		    })
 		    $("#jju").on('touchend','span:last',function(){
-		        console.log('间距加',jl)
+		        $(this).removeClass('bag');
 		        if(jl<15){
 			    	jl=parseInt(jl)+1;
 			    	$("#ct").css('letter-spacing',jl);
 		    	}
 		    })
 		          //点击目录第一栏返回首页
-		          $("#tl").on('touchend','span:first',function(){
-		          	location.href="../index.html"
-		          })
+		    $("#tl").on('touchend','span:first',function(){
+		       	location.href="../index.html"
+		    })
             //下一章节
+            $('.xzz').on('touchstart',function(){
+            	$(this).addClass('bag');
+            })
             $('.xzz').on('touchend',function(){
-            	index=index+1;
+            	$(this).removeClass('bag');
+            	if(int%2==0){
+            		index=index+1;
+            	}
+            	else{
+            		index=index-1;
+            	}
             	var lin=$('#list').find('li').eq(index).attr('data-link');
 				var hd=$('#list').find('li').eq(index).find('span').text();
 				lin=encodeURIComponent(lin);//编码
 					getContent(lin,hd)
             })
             //上一章
+            $('.sasa').on('touchstart',function(){
+            	$(this).addClass('bag');
+            })
              $('.sasa').on('touchend',function(){
-            	index=index-1;
+             	$(this).removeClass('bag');
+             	if(int%2==0){
+             		index=index-1;
+             	}
+             	else{
+             		index=index+1;
+             	}
             	var lin=$('#list').find('li').eq(index).attr('data-link');
 				var hd=$('#list').find('li').eq(index).find('span').text();
 				lin=encodeURIComponent(lin);//编码

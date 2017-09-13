@@ -1,13 +1,20 @@
 $(function(){
 	 //登录
-		     $("#dddd").on('touchend','span',function(){
+	         $("#dddd").on('touchstart','span:first',function(){
+	         	$(this).addClass('logbg');
+	         })
+		     $("#dddd").on('touchend','span:first',function(){
+		     	    $(this).removeClass('logbg');
 		     		$("#sss").show();
 		     })
 			//注册
-//			   $("#dddd").on('touchend','span:last-child',function(){
-//		     	$("#sss").show();
-//
-//		    })
+			$("#dddd").on('touchstart','span:last-child',function(){
+	         	$(this).addClass('logbg');
+	         })
+			$("#dddd").on('touchend','span:last-child',function(){
+				$(this).removeClass('logbg');
+		     	$("#sss").show();
+		    })
 		var db=openDatabase("login","1.0","denglu","1024*1024");
 		createTable=function(){
 				db.transaction( function(tx) { 
@@ -63,7 +70,12 @@ $(function(){
 				query()
 				$("#sss").hide()
 			}) 
+			$('#admin').on('touchstart',function(){
+				$(this).addClass('logbg');
+				console.log('av')
+			})
 		    $('#admin').on('touchend',function(){
+		    	$(this).removeClass('logbg');
 				$("#dddd").html("<span>登录</span>/<span>注册</span>");
 				$("#xs1").val("请登录")
 			}) 

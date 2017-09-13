@@ -15,11 +15,7 @@ $(function(){
 						 <span>最新章节:"+dt[i].lastChapter+"</span>\
 						 </div></li>").appendTo(obj);
 				    }
-		}
-	//阻止默认行为
-	$('#box').on('touchmove','li',function(ev){
-		ev.preventDefault();
-	})
+	}
 	//点击人头出现登录页面
 	$('#oul>li:first').on('touchend',function(){
 		$('.yincang').css('left',0);
@@ -50,38 +46,26 @@ $(function(){
 				{ q: "select * from json where url='http://api.zhuishushenqi.com/book/fuzzy-search?query="+kw+"'",format: "json"},
 				function(data){
 					getList(data,'#rs');
+					$('#ss').val('')
 				});
 		})
 		//获得小说列表
 		var isClick=true;
-//		var x1,y1;
 		$('.rs').on('touchstart','li',function(e){
 			isClick=true;
-//			var touch = e.originalEvent.targetTouches[0];
-//	            x1= touch.pageX;
-//	            y1= touch.pageY;
-//	            console.log(x1,y1)
 		})
 		$('.rs').on('touchmove','li',function(){
 			isClick=false;
 		})
+		var title;
 		$('.rs').on('touchend','li',function(e){
-//			var touch = e.originalEvent.changedTouches[0];
-//			console.log(touch.pageX)
-//	        var x2= touch.pageX;
-//	        var y2= touch.pageY;
-//	        var h=Math.abs(x2-x1);
-//	        var z=Math.abs(y2-y1);
-//	        console.log(typeof h,z)
 			if(isClick){
-//				if(h>10||z>10){
 					var id=$(this).attr('data-id');
-					location.href="subpage/rs.html?id="+id;
-//				}
+					title=$(this).find('span:first').text();
+					title=encodeURIComponent(encodeURIComponent(title));
+					location.href="subpage/rs.html?id="+id+"&title="+title;
 			}
 		})
-		
-		
 		
 		//加入书架
 		var db=openDatabase("bookcase","1.0","书架",1024*1024,function(){});
@@ -117,10 +101,12 @@ $(function(){
 		$('#sjyd').on('touchmove',function(){
 			flag=false;
 		})
-		$('#sjyd').on('touchend','div',function(){
+		$('#sjyd').on('touchend','.sdiv',function(){
 			if(flag){
 				var id=$(this).attr('data-id');
-				location.href='subpage/rs.html?id='+id;
+				var title=$(this).find('span:first').text();
+				title=encodeURIComponent(encodeURIComponent(title));
+				location.href='subpage/rs.html?id='+id+"&title="+title;
 			}
 		})
 

@@ -57,6 +57,7 @@ $(function(){
 		var zhb,yb,zb;
 		$('.phg').on('touchend','.phdiv',function(){
 			if(isClick){
+			$('.flrs>p').find('span:first').addClass('red').siblings('span').removeClass('red');				
 				zhb=$(this).attr('data-id');
 				yb=$(this).attr('data-moth');
 				zb=$(this).attr('data-total');

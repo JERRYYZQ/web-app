@@ -67,25 +67,25 @@ $(function(){
 	})
 	$('.cfg').on('touchend','.cfdiv',function(){
 		if(isClick){
+			$('.flrs>p').find('span:first').addClass('red').siblings('span').removeClass('red');
 			$('#flrs ul').html('');
 			name=$(this).attr('data-name');
 			ind1=$(this).parent('li').index();
 			name=encodeURIComponent(name);//编码
-			console.log(name,ind1)
 			$('#flrs').show().siblings().hide();
 			qie(arr1[n1]);
 		}
 	})
 	//按hot等排序
 	$('#flrs p').on('touchend','span',function(){
-		n1=$(this).index()-1;
+		n1=$(this).index();
 		$('#cfrs').html('');
 		console.log(typeof arr1[n1],arr1[n1],n1)
 		qie(arr1[n1]);
 	})
 	//点击变红
 	$('.flrs').on('touchend','p>span',function(){
-		$(this).addClass('red').siblings('span').removeClass('red')
+		$(this).addClass('red').siblings('span').removeClass('red');
 	})
 	//分类结果隐藏
 	$('.imgs').on('touchend',function(){
