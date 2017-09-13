@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="css/App.css"/>
+		<link rel="stylesheet" type="text/css" href="css/iconfont.css"/>
+		<link rel="stylesheet" type="text/css" href="css/sousuo.css"/>
+		<link rel="stylesheet" type="text/css" href="css/cf.css"/>
+		<link rel="stylesheet" href="css/sousuo.css" />
+		<script type="text/javascript" src="js/jquery.js" ></script>
+		<script src="js/zp.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" src="js/swipe.js" ></script>
+		<script type="text/javascript" src="spjs/cf.js" ></script>
+		<script type="text/javascript" src="spjs/ph.js" ></script>
+		<script src="js/iconfont1.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/iconfont.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" src="spjs/login.js" ></script>
+		<script type="text/javascript">
+			document.documentElement.style.fontSize=innerWidth/15+"px";
+		</script>
+	</head>
+	<body>
+		<secition class='yincang' id="yincang">
+			<ol class="ool" id="ool">
+			    <li id="dddd"><span>登录</span>/<span>注册</span></li>
+				<li><svg class="icon" aria-hidden="true"><use xlink:href="#icon-xiaoxi1"></use></svg><a href="#">我的话题</a></li>
+				<li><svg class="icon" aria-hidden="true"><use xlink:href="#icon-shangchengxitongtubiaozitihuayuanwenjian84"></use></svg><a href="#">我的账户</a></li>
+				<li><svg class="icon" aria-hidden="true"><use xlink:href="#icon-huodong-copy"></use></svg><a href="#">我的礼物</a></li>
+				<li><svg class="icon" aria-hidden="true"><use xlink:href="#icon-xiaoxi"></use></svg><a href="#">我的消息</a></li>
+				<li><svg class="icon" aria-hidden="true"><use xlink:href="#icon-renwu"></use></svg><a href="#">今日任务</a></li>
+			    <li><svg class="icon" aria-hidden="true"><use xlink:href="#icon-1"></use></svg><a href="#">活动中心</a></li>
+			    <li id="admin">退出登录</li>
+			</ol>
+			<div class="yc"></div>
+		</secition>
+		<!--登录界面-->
+		<secition id="sss">
+			<div>
+			<span id="xsss" style="z-index: 6; position: absolute;top: 0;right: 0;">×</span>
+				<label>账号：</label>
+				<input type="text" id="username"/>
+				<br />
+				<label>密码：</label>
+				<input type="password" id="pass"/>
+				<br />
+				<input type="button" id="btn" value="登录" />
+				<input type="button" id="btn1" value="注册" />
+			</div>
+		</secition>
+
+		<!--搜索区-->
+		<secition class='sou'>
+			<p><span id="fh"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arw-toLeft"></use></svg></span><!--返回箭头-->
+			<input type="text" placeholder="请输入您要书名" id="ss"/><!--搜索内容-->
+            <span class="iconfont" id="sousuo">&#xe66f;</span></p><!--搜索-->
+            <ul id="rs" class="rs"></ul><!--搜索结果-->
+		</secition>
+		<!--头部-->
+		<header>
+		<nav>
+			<ul id="oul">
+				<li class="navbar-brand" id="sw">
+				<span class="iconfont">&#xe639;</span>	
+				</li>
+				<li>随阅小说</li>
+				<!--<li>排行</li>
+				<li >推荐</li>
+				<li class="jia"><span class="iconfont">&#xe602;</span></li>-->
+				<li id="sou"><span class="iconfont">&#xe66f;</span></li><!--触摸搜索区出现-->
+			</ul>
+		</nav>	
+		</header>
+		
+		<section id="box" class="box">
+			<ul class="list" id="list">
+				<!--书架-->
+				<li id="sjyd"></li>
+				<!--分类-->
+				<li>
+					<!--大分类-->
+					<ul id="cf" class="cf">
+						<li class="btm">男生</li>
+						<li>女生</li>
+						<li>科幻</li>
+						<li>出版</li>
+					</ul>
+					<!--小分类-->
+					<ul id="lcf" class="lcf">
+						<li class="cfg"></li>
+						<li class="cfg"></li>
+						<li class="cfg"></li>
+						<li class="cfg"></li>
+					</ul>
+					<div id="flrs" class="flrs">
+						<p>
+							<span class="red">热门<em>hot</em></span>
+							<span>新书<em>new</em></span>
+							<span>好评<em>repulation</em></span>
+							<span>完结<em>over</em></span>
+						</p>
+						<img src="img/fanhui.png" class="imgs"/>
+						<ul class='rs' id="cfrs"></ul>
+					</div>
+				</li>
+				<!--排行-->
+				<li>
+					<ul class="cf" id="phs">
+						<li class="btm">男生</li>
+						<li>女生</li>
+					</ul>
+					<!--排行类-->
+					<ul class="lcf" id="phn">
+						<li class="phg"></li>
+						<li class="phg"></li>
+					</ul>
+					<div class="flrs" id="pht">
+						<p>
+							<span class="red">周榜</span>
+							<span>月榜</span>
+							<span>总榜</span>
+						</p>
+						<img src="img/fanhui.png" class="imgs"/>
+						<ul class='rs' id="phrs"></ul>
+				</li>
+				<!--书库-->
+				<li>DDDD</li>
+			</ul>
+		</section>
+		
+		
+<footer id="bb">
+	<ul id="fb">
+		<li class="current"><span><svg class="icon1" aria-hidden="true"><use xlink:href="#icon-shujia"></use></svg></span><b>书架</b></li>
+		<li><span><svg class="icon1" aria-hidden="true"><use xlink:href="#icon-leimupinleifenleileibie1"></use></svg></span><b>分类</b></li>
+		<li><span><svg class="icon1" aria-hidden="true"><use xlink:href="#icon-paixing1"></use></svg></span><b>排行</b></li>
+		<!--<li><span><svg class="icon1" aria-hidden="true"><use xlink:href="#icon-shukuzhuanhuan"></use></svg></span><b>书库</b></li>-->
+	</ul>
+</footer>
+	</body>
+	
+	
+
+</html>

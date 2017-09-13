@@ -1,0 +1,79 @@
+@charset "UTF-8";
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body, section { width: 100%; height: 100%; }
+
+input { outline: none; border: none; }
+
+body { position: relative; display: flex; flex-direction: column; overflow: hidden; }
+
+a { text-decoration: none; color: inherit; }
+
+.yincang { width: 100%; height: 100%; position: absolute; top: 0; left: -100%; z-index: 2; transition: all 0.2s; display: flex; }
+
+.sou { width: 100%; height: 100%; background: white; display: none; position: absolute; top: 0; left: 0; z-index: 2; }
+
+.sou > p { width: 100%; height: 1.76rem; background: cornsilk; display: flex; justify-content: space-around; align-items: center; }
+
+.sou > p > input { width: 50%; height: 70%; display: flex; border-radius: 5px; padding-left: 5px; }
+
+.yincang .ool { width: 60%; height: 100%; background: white; display: flex; flex-direction: column; align-items: center; }
+
+.yc { width: 40%; height: 100%; background: #ccc; opacity: 0.3; }
+
+.yincang .ool li { width: 100%; height: 2.8rem; display: flex; border-bottom: 1px solid blanchedalmond; align-items: center; padding-left: 0.48rem; }
+
+.yincang .ool a { margin-left: 0.2rem; }
+
+.iconfont { font-family: "iconfont" !important; font-size: 1.28rem; font-style: normal; -webkit-font-smoothing: antialiased; -webkit-text-stroke-width: 0.2px; -moz-osx-font-smoothing: grayscale; }
+
+#oul li:last-child span { font-size: 1.8rem; }
+
+header锛宯av, ul, footer { width: 100%; height: 2.2rem; }
+
+nav ul { list-style: none; display: flex; justify-content: space-between; background: #1ca9bb; align-items: center; color: white; }
+
+nav ul li { font-size: 0.8rem; width: 2.4rem; text-align: center; }
+nav ul li:nth-child(2) { font-size: 0.56rem; }
+
+footer > ul { list-style: none; display: flex; justify-content: space-between; background: #49bac8; color: white; }
+
+footer > ul > li { font-size: 0.8rem; align-items: center; width: 1.2rem; justify-content: center; display: flex; flex: 1; flex-direction: column; height: 100%; }
+
+footer > ul > li > b { font-size: 0.48rem; font-weight: normal; }
+
+.icon { width: 1em; height: 1em; vertical-align: -0.15em; fill: currentColor; overflow: hidden; color: yellowgreen; }
+
+.icon1 { width: 3.8rem; height: 0.8rem; vertical-align: -0.15em; fill: currentColor; overflow: hidden; }
+
+.box { height: 100%; position: relative; }
+
+.box > ul { list-style: none; width: 400%; height: 100%; position: absolute; }
+
+.list > li { width: 25%; height: 100%; float: left; }
+.list > li #sdiv { width: 100%; height: 30%; padding: 2%; display: flex; }
+.list > li #sdiv #simg { width: 30%; height: 100%; }
+.list > li #sdiv #simg img { width: 100%; height: 100%; }
+.list > li #sdiv .sspan { width: 70%; height: 100%; display: flex; flex-direction: column; margin-left: 1.5%; }
+.list > li #sdiv .sspan span:nth-child(1) { font-size: 0.96rem; color: red; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.list > li #sdiv .sspan span:nth-child(2) { font-size: 0.64rem; color: #ccc; }
+.list > li #sdiv .sspan span:nth-child(3) { font-size: 0.48rem; overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
+.list > li #sdiv .sspan span:nth-child(4) { font-size: 0.64rem; color: red; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; display: flex; flex: 1; align-items: center; }
+
+.current { color: yellowgreen; }
+
+#sss { width: 80%; height: 50%; background: wheat; position: absolute; left: 10%; top: 24%; z-index: 4; display: none; }
+
+#sss div { width: 87%; height: 60%; margin-left: 0.96rem; margin-top: 4.48rem; }
+
+#sss div #btn { margin-left: 4.2rem; }
+
+#sss div label { font-size: 0.72rem; }
+
+#admin { width: 60%; height: 3.2rem; background: white; display: flex; justify-content: center; line-height: 3.2rem; border-bottom: none; }
+
+#login input { font-size: 0.8rem; width: 2.4rem; text-align: center; }
+
+.yincang #dddd { width: 60%; height: 3.2rem; display: flex; justify-content: center; line-height: 3.2rem; border-bottom: none; font-size: 0.96rem; }
+
+/*# sourceMappingURL=App.css.map */
