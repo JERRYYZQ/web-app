@@ -1,6 +1,6 @@
 $(function(){
 	 //登录
-		     $("#dddd").on('touchend','span',function(){
+		     $("#dddd").on('touchend',function(){
 		     		$("#sss").show();
 		     })
 			//注册
