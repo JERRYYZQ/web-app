@@ -16,11 +16,11 @@
 
 .flrs { width: 100%; height: 100%; display: none; position: relative; }
 .flrs .imgs { position: absolute; bottom: 0.48rem; right: 0.48rem; opacity: 0.6; }
-.flrs p { width: 100%; height: 5%; display: flex; font-size: 0.64rem; }
+.flrs p { width: 100%; height: 5%; display: -moz-box; display: -webkit-flex; font-size: 0.64rem; }
 .flrs p span { flex: 1; display: flex; justify-content: center; align-items: center; }
 .flrs p span em { display: none; }
 .flrs ul { width: 100%; height: 95%; list-style: none; overflow: auto; flex-direction: column; }
-.flrs ul li { width: 100%; height: 30%; display: flex; padding-bottom: 3%; }
+.flrs ul li { width: 100%; height: 30%; display: flex; padding: 1%; }
 
 .red { background: red; }
 

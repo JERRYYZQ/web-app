@@ -59,10 +59,10 @@ $(function(){
 	var name,ind1;
 	//获取小说列表
 	var isClick=true;
-	$('.cfg').on('touchstart','li',function(){
+	$('.cfg').on('touchstart',function(){
 			isClick=true;
 	})
-	$('.cfg').on('touchmove','li',function(){
+	$('.cfg').on('touchmove',function(){
 			isClick=false;
 	})
 	$('.cfg').on('touchend','.cfdiv',function(){

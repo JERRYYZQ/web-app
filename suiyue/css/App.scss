@@ -167,12 +167,12 @@ height: 100%;
 }
  .box>ul{
 list-style: none;
-width: 400%;
+width: 300%;
 height: 100%;
 position: absolute;
 }
 .list>li{
-width: 25%;
+width: 33.333%;
 height: 100%;
 float: left;
 overflow: auto;
@@ -182,7 +182,7 @@ overflow: auto;
         padding: 2%;
         display: flex;
         #simg{
-            width: 30%;
+            width: 28%;
             height: 100%;
             img{
                 width: 100%;
@@ -190,7 +190,7 @@ overflow: auto;
             }
         }
         .sspan{
-            width: 70%;
+            width: 72%;
             height: 100%;
             display: flex;
             flex-direction: column;

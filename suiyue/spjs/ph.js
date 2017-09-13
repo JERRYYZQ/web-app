@@ -48,10 +48,10 @@ $(function(){
 		
 		//点击排行榜小说列表
 		var isClick=true;
-		$('.phg').on('touchstart','.phdiv',function(){
+		$('.phg').on('touchstart',function(){
 			isClick=true;
 		})
-		$('.phg').on('touchmove','li',function(){
+		$('.phg').on('touchmove',function(){
 			isClick=false;
 		})
 		var zhb,yb,zb;

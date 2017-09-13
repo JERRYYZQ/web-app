@@ -48,13 +48,13 @@ footer > ul > li > b { font-size: 0.48rem; font-weight: normal; }
 
 .box { height: 100%; position: relative; }
 
-.box > ul { list-style: none; width: 400%; height: 100%; position: absolute; }
+.box > ul { list-style: none; width: 300%; height: 100%; position: absolute; }
 
-.list > li { width: 25%; height: 100%; float: left; overflow: auto; }
+.list > li { width: 33.333%; height: 100%; float: left; overflow: auto; }
 .list > li #sdiv { width: 100%; height: 30%; padding: 2%; display: flex; }
-.list > li #sdiv #simg { width: 30%; height: 100%; }
+.list > li #sdiv #simg { width: 28%; height: 100%; }
 .list > li #sdiv #simg img { width: 100%; height: 100%; }
-.list > li #sdiv .sspan { width: 70%; height: 100%; display: flex; flex-direction: column; margin-left: 1.5%; }
+.list > li #sdiv .sspan { width: 72%; height: 100%; display: flex; flex-direction: column; margin-left: 1.5%; }
 .list > li #sdiv .sspan span:nth-child(1) { font-size: 0.96rem; color: red; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .list > li #sdiv .sspan span:nth-child(2) { font-size: 0.64rem; color: #ccc; }
 .list > li #sdiv .sspan span:nth-child(3) { font-size: 0.48rem; overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }

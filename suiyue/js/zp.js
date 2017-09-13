@@ -16,6 +16,18 @@ $(function(){
 						 </div></li>").appendTo(obj);
 				    }
 		}
+	//阻止默认行为
+	$('#box').on('touchmove','li',function(ev){
+		ev.preventDefault();
+	})
+	//点击人头出现登录页面
+	$('#oul>li:first').on('touchend',function(){
+		$('.yincang').css('left',0);
+    })
+	$('.yc').on('touchend',function(){
+		$('#yincang').css('left','-100%')
+	})
+	//点击底部切换中部页面
 	$("#fb").on("click",'li',function(){
 		var n=$(this).index();
 		var w=$("#box").width();
@@ -98,9 +110,18 @@ $(function(){
 					})
 				})
 				//书架阅读
+	    var flag=true;
+		$('#sjyd').on('touchstart',function(){
+			flag=true;
+		})
+		$('#sjyd').on('touchmove',function(){
+			flag=false;
+		})
 		$('#sjyd').on('touchend','div',function(){
-			var id=$(this).attr('data-id');
-			location.href='subpage/rs.html?id='+id;
+			if(flag){
+				var id=$(this).attr('data-id');
+				location.href='subpage/rs.html?id='+id;
+			}
 		})
 
 		
