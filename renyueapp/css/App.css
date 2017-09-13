@@ -50,7 +50,7 @@ footer > ul > li > b { font-size: 0.48rem; font-weight: normal; }
 
 .box > ul { list-style: none; width: 400%; height: 100%; position: absolute; }
 
-.list > li { width: 25%; height: 100%; float: left; }
+.list > li { width: 25%; height: 100%; float: left; overflow: auto; }
 .list > li #sdiv { width: 100%; height: 30%; padding: 2%; display: flex; }
 .list > li #sdiv #simg { width: 30%; height: 100%; }
 .list > li #sdiv #simg img { width: 100%; height: 100%; }
