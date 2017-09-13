@@ -1,17 +1,17 @@
 $(function(){
 	 //登录
-	         $("#dddd").on('touchstart','span:first',function(){
+	         $('#dddd').on('touchstart',"#denglu",function(){
 	         	$(this).addClass('logbg');
 	         })
-		     $("#dddd").on('touchend','span:first',function(){
+		     $('#dddd').on('touchend',"#denglu",function(){
 		     	    $(this).removeClass('logbg');
 		     		$("#sss").show();
 		     })
 			//注册
-			$("#dddd").on('touchstart','span:last-child',function(){
+			$("#zhuce").on('touchstart',function(){
 	         	$(this).addClass('logbg');
 	         })
-			$("#dddd").on('touchend','span:last-child',function(){
+			$("#zhuce").on('touchend',function(){
 				$(this).removeClass('logbg');
 		     	$("#sss").show();
 		    })
@@ -76,7 +76,7 @@ $(function(){
 			})
 		    $('#admin').on('touchend',function(){
 		    	$(this).removeClass('logbg');
-				$("#dddd").html("<span>登录</span>/<span>注册</span>");
+				$("#dddd").html("<span id='denglu'>登录</span>/<span id='zhuce'>注册</span>");
 				$("#xs1").val("请登录")
 			}) 
 			$("#xsss").on('touchend',function(){

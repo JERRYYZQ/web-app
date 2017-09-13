@@ -62,9 +62,9 @@ footer > ul > li > b { font-size: 0.48rem; font-weight: normal; }
 
 .current { color: yellowgreen; }
 
-#sss { width: 80%; height: 50%; background: wheat; position: absolute; left: 10%; top: 24%; z-index: 4; display: none; }
+#sss { width: 80%; height: 24%; background: wheat; position: absolute; left: 10%; top: 35%; z-index: 4; display: none; }
 
-#sss div { width: 87%; height: 60%; margin-left: 0.96rem; margin-top: 4.48rem; }
+#sss div { width: 78%; height: 43%; margin-left: 0.96rem; margin-top: 1.48rem; }
 
 #sss div #btn { margin-left: 4.2rem; }
 

@@ -61,13 +61,17 @@ $(function(){
 							})
 				}
 				//获取小说章节内容
-//				setTimeout(function(){
+				$.getJSON("http://query.yahooapis.com/v1/public/yql",
+					{ q: "select * from json where url='http://api.zhuishushenqi.com/mix-atoc/"+id+"?view=chapters"+"'",format: "json"},
+					function(data){
+						var dt=data.query.results.json.mixToc.chapters;
+						console.log(data)
+				})
 //					var firstLink=$('#list').find('li:first').attr('data-link');
 //					var firstTitle=$('#list').find('span:first').text();
 //					
 //					console.log(firstLink.firstTitle);
 //					getContent(firstLink,firstTitle)
-//				},15000)
 				var isClick=true;
 				$('#list').on('touchstart','li',function(){
 					isClick=true;
