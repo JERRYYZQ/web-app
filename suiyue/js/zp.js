@@ -110,5 +110,20 @@ $(function(){
 			}
 		})
 
-		
+//		//登录
+//	         $('#dddd').on('touchstart',"#denglu",function(){
+//	         	$(this).addClass('logbg');
+//	         })
+//		     $('#dddd').on('touchend',"#denglu",function(){
+//		     	    $(this).removeClass('logbg');
+//		     		$("#sss").show();
+//		     })
+//			//注册
+//			$('#dddd').on('touchstart',"#zhuce",function(){
+//	         	$(this).addClass('logbg');
+//	         })
+//			$('#dddd').on('touchend',"#zhuce",function(){
+//				$(this).removeClass('logbg');
+//		     	$("#sss").show();
+//		    })
 })

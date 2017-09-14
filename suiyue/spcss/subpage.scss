@@ -6,6 +6,7 @@ html,body,section{
 body{background: #b8ca9d;}
 $x:25;
 #link{
+    display: none;
 #tl{
     width: 100%;
     height: 7%;
@@ -59,7 +60,7 @@ $x:25;
 }
 }
 #conter{
-    display: none;
+//  display: none;
     padding: 0 12/$x+rem;
     h4{
             width: 100%;

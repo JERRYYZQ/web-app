@@ -62,17 +62,13 @@ footer > ul > li > b { font-size: 0.48rem; font-weight: normal; }
 
 .current { color: yellowgreen; }
 
-#sss { width: 80%; height: 24%; background: wheat; position: absolute; left: 10%; top: 35%; z-index: 4; display: none; }
+#sss { width: 100%; height: 100%; background: wheat; position: absolute; left: 0; top: 0; z-index: 2; display: none; }
 
-#sss div { width: 78%; height: 43%; margin-left: 0.96rem; margin-top: 1.48rem; }
+#neijz { position: absolute; top: 40%; left: 17%; }
 
-#sss div #btn { margin-left: 4.2rem; }
+#xsss { position: absolute; top: -40%; right: 0; }
 
-#sss div label { font-size: 0.72rem; }
-
-#admin { width: 60%; height: 3.2rem; background: white; display: flex; justify-content: center; line-height: 3.2rem; border-bottom: none; }
-
-#login input { font-size: 0.8rem; width: 2.4rem; text-align: center; }
+#btn { margin-left: 41%; }
 
 .yincang #dddd { width: 60%; height: 3.2rem; display: flex; justify-content: center; line-height: 3.2rem; border-bottom: none; font-size: 0.96rem; }
 

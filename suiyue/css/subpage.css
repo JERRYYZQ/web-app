@@ -4,6 +4,7 @@ html, body, section { width: 100%; height: 100%; }
 
 body { background: #b8ca9d; }
 
+#link { display: none; }
 #link #tl { width: 100%; height: 7%; padding: 0 0.64rem; display: flex; justify-content: space-between; align-items: center; }
 #link #list { width: 100%; height: 93%; overflow: auto; }
 #link #list li { list-style: none; width: 100%; height: 10%; border-top: 1px solid #e8dbdb; display: flex; align-items: center; padding: 0 12px; font-size: 0.96rem; }
@@ -11,7 +12,7 @@ body { background: #b8ca9d; }
 #link #top { width: 7%; height: 5%; background: #ccc; opacity: 0.6; position: fixed; top: 7%; right: 7%; text-align: center; border-radius: 50%; }
 #link #bom { width: 7%; height: 5%; background: #ccc; opacity: 0.6; position: fixed; bottom: 7%; right: 7%; display: none; text-align: center; border-radius: 50%; }
 
-#conter { display: none; padding: 0 0.48rem; }
+#conter { padding: 0 0.48rem; }
 #conter h4 { width: 100%; height: 7%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 185%; text-align: center; }
 #conter #ct { width: 100%; height: 93%; overflow: auto; text-indent: 2em; font-size: 0.96rem; letter-spacing: 0.24rem; }
 

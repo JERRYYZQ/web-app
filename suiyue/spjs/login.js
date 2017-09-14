@@ -8,18 +8,17 @@ $(function(){
 		     		$("#sss").show();
 		     })
 			//注册
-			$("#zhuce").on('touchstart',function(){
+			$('#dddd').on('touchstart',"#zhuce",function(){
 	         	$(this).addClass('logbg');
 	         })
-			$("#zhuce").on('touchend',function(){
+			$('#dddd').on('touchend',"#zhuce",function(){
 				$(this).removeClass('logbg');
 		     	$("#sss").show();
 		    })
 		var db=openDatabase("login","1.0","denglu","1024*1024");
 		createTable=function(){
 				db.transaction( function(tx) { 
-				tx.executeSql("create table if not exists login (username REAL UNIQUE,password TEXT)", [],
-				)
+					tx.executeSql("create table if not exists login (username REAL UNIQUE,password TEXT)", [])
 				});
 		};
 			createTable();
