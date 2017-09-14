@@ -1,5 +1,6 @@
 $(function(){
 	//获取地址上的id,title
+//	localStorage.clear()
 				function GetQueryString(name){
 				     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
 				     var r = window.location.search.substr(1).match(reg);
@@ -61,16 +62,27 @@ $(function(){
 							})
 				}
 				//获取小说章节内容
+				if(!localStorage.getItem(id)){
+					localStorage.setItem(id,'0');
+				}
 				var firstLink;
 				var firstTitle;
-				localStorage.setItem('link','0')
-				console.log(localStorage.getItem('link'))
+				var len;
 				$.getJSON("http://query.yahooapis.com/v1/public/yql",
 					{ q: "select * from json where url='http://api.zhuishushenqi.com/mix-atoc/"+id+"?view=chapters"+"'",format: "json"},
 					function(data){
 						var dt=data.query.results.json.mixToc.chapters;
-						firstLink=dt[0].link;
-						firstTitle=dt[0].title;
+						    len=dt.length;
+						console.log(len)
+						var jz=parseInt(localStorage.getItem(id));
+						if(jz<0){
+							jz=len+jz;
+							console.log(jz)
+						}
+						index=jz;
+						localStorage.setItem(id,jz);
+						firstLink=dt[jz].link;
+						firstTitle=dt[jz].title;
 						firstLink=encodeURIComponent(firstLink)
 						getContent(firstLink,firstTitle)
 				})
@@ -84,6 +96,12 @@ $(function(){
 				var index=0;
 				$('#list').on('touchend','li',function(){
 					index=$(this).index();
+					if(int%2==0){
+						localStorage.setItem(id,index);
+					}else{
+						localStorage.setItem(id,len-index-2)
+					}
+					
 			        if(isClick){
 			        	    $(this).addClass('bag').siblings('li').removeClass('bag');
 							var lin=$(this).attr('data-link');
@@ -111,7 +129,7 @@ $(function(){
 					tx.executeSql(
 					"insert into bookcase (id) values(?)",
 					[id],
-						function () {  },
+						function () {alert('加入书架成功')  },
 						function (tx, error) { alert('已加入书架'); }
 					);
 					});
@@ -240,6 +258,8 @@ $(function(){
 		       	location.href="../index.html"
 		    })
             //下一章节
+//          if(index=length){index==0}
+//          if(index==-1){index==len}
             $('.xzz').on('touchstart',function(){
             	$(this).addClass('bag');
             })
@@ -247,9 +267,16 @@ $(function(){
             	$(this).removeClass('bag');
             	if(int%2==0){
             		index=index+1;
+            		localStorage.setItem(id,index);
             	}
             	else{
             		index=index-1;
+            		localStorage.setItem(id,len-index-2);
+	            		if(parseInt(localStorage.getItem(id))==len-1){
+	            		localStorage.setItem(id,'0');
+	            		$('#tl').find('span:last').trigger('touchend');
+	            		$('.xzz').trigger('touchend')
+            		}
             	}
             	var lin=$('#list').find('li').eq(index).attr('data-link');
 				var hd=$('#list').find('li').eq(index).find('span').text();
@@ -257,6 +284,8 @@ $(function(){
 					getContent(lin,hd)
             })
             //上一章
+//          if(index=length){index==0}
+//          if(index==-1){index==len}
             $('.sasa').on('touchstart',function(){
             	$(this).addClass('bag');
             })
@@ -264,13 +293,19 @@ $(function(){
              	$(this).removeClass('bag');
              	if(int%2==0){
              		index=index-1;
+             		localStorage.setItem(id,index);
+//           		if(parseInt(localStorage.getItem(id))==-1){
+//          		localStorage.setItem(id,len+index);
+//          		}
              	}
              	else{
              		index=index+1;
+            		localStorage.setItem(id,len-index-2);
              	}
             	var lin=$('#list').find('li').eq(index).attr('data-link');
 				var hd=$('#list').find('li').eq(index).find('span').text();
 				lin=encodeURIComponent(lin);//编码
 				getContent(lin,hd)
             })
+//          }
 })
