@@ -73,16 +73,12 @@ $(function(){
 					function(data){
 						var dt=data.query.results.json.mixToc.chapters;
 						    len=dt.length;
-						console.log(len)
-						var jz=parseInt(localStorage.getItem(id));
-						if(jz<0){
-							jz=len+jz;
-							console.log(jz)
-						}
-						index=jz;
-						localStorage.setItem(id,jz);
-						firstLink=dt[jz].link;
-						firstTitle=dt[jz].title;
+						var og=parseInt(localStorage.getItem(id));
+						console.log(og)
+						index=og;
+						$("*[data-orgin="+index+"]").addClass('bag').siblings('li').removeClass('bag');
+						firstLink=dt[og].link;
+						firstTitle=dt[og].title;
 						firstLink=encodeURIComponent(firstLink)
 						getContent(firstLink,firstTitle)
 				})
@@ -93,15 +89,10 @@ $(function(){
 				$('#list').on('touchmove','li',function(){
 					isClick=false;
 				})
-				var index=0;
+				var index;
 				$('#list').on('touchend','li',function(){
-					index=$(this).index();
-					if(int%2==0){
-						localStorage.setItem(id,index);
-					}else{
-						localStorage.setItem(id,len-index-2)
-					}
-					
+					index=parseInt($(this).attr('data-orgin'));
+					localStorage.setItem(id,index);
 			        if(isClick){
 			        	    $(this).addClass('bag').siblings('li').removeClass('bag');
 							var lin=$(this).attr('data-link');
@@ -306,23 +297,16 @@ $(function(){
             	$(this).addClass('bag');
             })
             $('.xzz').on('touchend',function(){
-            	console.log($("*[data-orgin=11]"))
             	$(this).removeClass('bag');
-            	if(int%2==0){
-            		index=index+1;
-            		localStorage.setItem(id,index);
-            	}
-            	else{
-            		index=index-1;
-            		localStorage.setItem(id,len-index-2);
-	            		if(parseInt(localStorage.getItem(id))==len-1){
-	            		localStorage.setItem(id,'0');
-	            		$('#tl').find('span:last').trigger('touchend');
-	            		$('.xzz').trigger('touchend')
-            		}
-            	}
-            	var lin=$('#list').find('li').eq(index).attr('data-link');
-				var hd=$('#list').find('li').eq(index).find('span').text();
+				if(index==len-1){
+					alert('当前是最后一章')
+				}else{
+            		index++;
+				}
+            	localStorage.setItem(id,index);
+            	var lin=$("*[data-orgin="+index+"]").attr('data-link');
+            	$("*[data-orgin="+index+"]").addClass('bag').siblings('li').removeClass('bag');
+				var hd=$("*[data-orgin="+index+"]").find('span').text();
 				lin=encodeURIComponent(lin);//编码
 					getContent(lin,hd)
             })
@@ -332,16 +316,15 @@ $(function(){
             })
              $('.sasa').on('touchend',function(){
              	$(this).removeClass('bag');
-             	if(int%2==0){
-             		index=index-1;
-             		localStorage.setItem(id,index);
-             	}
-             	else{
-             		index=index+1;
-            		localStorage.setItem(id,len-index-2);
-             	}
-            	var lin=$('#list').find('li').eq(index).attr('data-link');
-				var hd=$('#list').find('li').eq(index).find('span').text();
+             		if(index!=0){
+             			index--;
+             		}else{
+             			alert('当前是第一章');
+             		}
+               	localStorage.setItem(id,index);
+            	var lin=$("*[data-orgin="+index+"]").attr('data-link');
+            	$("*[data-orgin="+index+"]").addClass('bag').siblings('li').removeClass('bag');
+				var hd=$("*[data-orgin="+index+"]").find('span').text();
 				lin=encodeURIComponent(lin);//编码
 				getContent(lin,hd)
             })

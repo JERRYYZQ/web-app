@@ -1,6 +1,5 @@
 $(function(){
 	//获取地址上的id,title
-//	localStorage.clear()
 				function GetQueryString(name){
 				     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
 				     var r = window.location.search.substr(1).match(reg);
@@ -16,7 +15,7 @@ $(function(){
 						var dt=data.query.results.json.mixToc.chapters;
 						console.log(data)
 						for(var i=0;i<dt.length;i++){
-							$("<li data-link='"+dt[i].link+"'"+"data-orgin='"+i+"'"+"><span>"+dt[i].title+"</span></li>").appendTo('#list')
+							$("<li data-link='"+dt[i].link+"'"+"><span>"+dt[i].title+"</span></li>").appendTo('#list')
 						}
 				})
 				//一件底部
@@ -62,27 +61,16 @@ $(function(){
 							})
 				}
 				//获取小说章节内容
-				if(!localStorage.getItem(id)){
-					localStorage.setItem(id,'0');
-				}
 				var firstLink;
 				var firstTitle;
-				var len;
+				localStorage.setItem('link','0')
+				console.log(localStorage.getItem('link'))
 				$.getJSON("http://query.yahooapis.com/v1/public/yql",
 					{ q: "select * from json where url='http://api.zhuishushenqi.com/mix-atoc/"+id+"?view=chapters"+"'",format: "json"},
 					function(data){
 						var dt=data.query.results.json.mixToc.chapters;
-						    len=dt.length;
-						console.log(len)
-						var jz=parseInt(localStorage.getItem(id));
-						if(jz<0){
-							jz=len+jz;
-							console.log(jz)
-						}
-						index=jz;
-						localStorage.setItem(id,jz);
-						firstLink=dt[jz].link;
-						firstTitle=dt[jz].title;
+						firstLink=dt[0].link;
+						firstTitle=dt[0].title;
 						firstLink=encodeURIComponent(firstLink)
 						getContent(firstLink,firstTitle)
 				})
@@ -96,12 +84,6 @@ $(function(){
 				var index=0;
 				$('#list').on('touchend','li',function(){
 					index=$(this).index();
-					if(int%2==0){
-						localStorage.setItem(id,index);
-					}else{
-						localStorage.setItem(id,len-index-2)
-					}
-					
 			        if(isClick){
 			        	    $(this).addClass('bag').siblings('li').removeClass('bag');
 							var lin=$(this).attr('data-link');
@@ -124,65 +106,21 @@ $(function(){
 					});
 		        };
 	         	createTable();
-            //查询
-            var bookrack=true;
-            query = function (id) {
-				db.transaction(function (tx) {
-				tx.executeSql("select * from bookcase", [],function (tx, result) {
-					for(var i=0;i<result.rows.length;i++){
-						if(result.rows[i].id==id){
-							$('#mtui').text('移出书架');
-							bookrack=false;
-							break;
-						}else{
-							$('#mtui').text('加入书架');
-							bookrack=true;
-						}
-					}
-				},
-				function (tx, error) {
-				alert('查询失败: ' + error.message);
-				} );
-				});
-			}
-            query(id);
-				
-				inser=function(id){
-					db.transaction(function (tx) {
-					tx.executeSql("insert into bookcase (id) values(?)",[id],
-						function () {alert('加入书架成功'); bookrack=false;$('#mtui').text('移出书架');},
-						function (tx, error) {  }
+				inser=function(){
+						db.transaction(function (tx) {
+					tx.executeSql(
+					"insert into bookcase (id) values(?)",
+					[id],
+						function () {  },
+						function (tx, error) { alert('已加入书架'); }
 					);
 					});
 				}
-				
+				$("#mtui").on('touchend',function(){
+					inser();
+				})
 
-            //移出书架
-            del = function (id) {
-				db.transaction(function (tx) {
-			        tx.executeSql("delete from bookcase where id=?",[id],function (tx, result) {
-						$('#mtui').text('加入书架');
-						bookrack=true;
-				    },
-					function (tx, error) {
-						alert('移出失败: ' + error.message);
-					});
-				});
-			}
-            
-            	$('#mtui').on('touchend',function(){
-            		if(bookrack){
-            			inser(id);
-            		}else{
-	            		if(confirm('确定要移出书架吗？')){
-							del(id);
-						}else{
-							return false;
-						}
-            		}
-            		
-           		})
-            
+
 			//小说阅读体验，设置
 			var n=0;
 			var ctTouch=true;
@@ -306,20 +244,12 @@ $(function(){
             	$(this).addClass('bag');
             })
             $('.xzz').on('touchend',function(){
-            	console.log($("*[data-orgin=11]"))
             	$(this).removeClass('bag');
             	if(int%2==0){
             		index=index+1;
-            		localStorage.setItem(id,index);
             	}
             	else{
             		index=index-1;
-            		localStorage.setItem(id,len-index-2);
-	            		if(parseInt(localStorage.getItem(id))==len-1){
-	            		localStorage.setItem(id,'0');
-	            		$('#tl').find('span:last').trigger('touchend');
-	            		$('.xzz').trigger('touchend')
-            		}
             	}
             	var lin=$('#list').find('li').eq(index).attr('data-link');
 				var hd=$('#list').find('li').eq(index).find('span').text();
@@ -334,11 +264,9 @@ $(function(){
              	$(this).removeClass('bag');
              	if(int%2==0){
              		index=index-1;
-             		localStorage.setItem(id,index);
              	}
              	else{
              		index=index+1;
-            		localStorage.setItem(id,len-index-2);
              	}
             	var lin=$('#list').find('li').eq(index).attr('data-link');
 				var hd=$('#list').find('li').eq(index).find('span').text();

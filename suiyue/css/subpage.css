@@ -16,7 +16,7 @@ body { background: #b8ca9d; }
 #conter h4 { width: 100%; height: 7%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 185%; text-align: center; }
 #conter #ct { width: 100%; height: 93%; overflow: auto; text-indent: 2em; font-size: 0.96rem; letter-spacing: 0.24rem; }
 
-#top1 { width: 100%; height: 1.28rem; background: darkorange; position: absolute; top: 0; left: 0; display: none; text-align: center; line-height: 1.28rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+#top1 { width: 100%; height: 1.28rem; background: darkorange; position: absolute; top: 0; left: 0; display: none; text-align: center; line-height: 1.28rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding: 0 12%; }
 #top1 img { position: absolute; top: 0; left: 0.28rem; }
 
 #bottom { width: 100%; height: 2.56rem; background: darkorange; position: absolute; bottom: 0; left: 0; display: none; }
