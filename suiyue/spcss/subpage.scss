@@ -82,29 +82,34 @@ $x:25;
 }
 #top1{
         width: 100%;
-        height: 8%;
+        height: 32/$x+rem;
         background: darkorange;
         position: absolute;
         top: 0;
         left: 0;
         display: none;
         text-align: center;
-        line-height: 225%;
+        line-height: 32/$x+rem;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+        img{
+            position: absolute;
+            top: 0;
+            left: 7/$x+rem;
+        }
  }
  #bottom{
   width: 100%;
-  height:10% ;
+  height:64/$x+rem ;
   background: darkorange;
   position: absolute;
   bottom: 0;
-   left: 0;  
-   display: none;
+  left: 0;  
+  display: none;
  }
  #bottom ul{
-     height: 50%;
+     height: 32/$x+rem;
      list-style: none;
      display: flex;
      justify-content: space-around; 
@@ -126,19 +131,22 @@ li{
     bottom:0;
   display: none;
 }
- #msz p{
+#msz p{
 width: 100%;
-height: 20%;
- background: wheat;
+height: 25%;
+background: wheat;
 display: flex;
 justify-content: space-around;
+align-items: center;
 margin-top: 12.5/$x+rem;
 }
-#msz p:nth-child(1) span{
-    width: 50/$x+rem;
-    height: 40/$x+rem;
+#msz p span{
+    width: 2rem;
+    height: 100%;
     border: 1px solid gray;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 #msz ol{
     list-style: none;
@@ -197,23 +205,8 @@ margin-top: 12.5/$x+rem;
     align-items: center;
      
 }
-//#syz{
-//  width: 100%;
-//  height: 8%;
-//  position: absolute;
-//  bottom: 6.4%;
-//  left: 0;
-//  display: flex;
-//  justify-content: space-between;
-// align-items: center;
-//} 
-//#syz span{
-//  background: rgba(0,0,0,0.3);
-//  width: 20%;
-//  color: white;
-//}
 #syz{
-    height: 50%;
+    height: 32/$x+rem;
     display: flex;
     justify-content: space-between;
     padding: 0 16/$x+rem;
@@ -225,7 +218,7 @@ margin-top: 12.5/$x+rem;
             font-size: 12/$x+rem;
             height: 100%;
             vertical-align: top;
-            line-height: 280%;
+            line-height: 32/$x+rem;
         }
     }
 }

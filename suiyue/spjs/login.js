@@ -54,7 +54,7 @@ $(function(){
 							if(flag){
 								alert("请先注册")
 								$("#sss").show();
-				$("#dddd").html("<span>登录</span>/<span>注册</span>");
+//				$("#dddd").html("<span>登录</span>/<span>注册</span>");
 								
 							}
 							flag=true;

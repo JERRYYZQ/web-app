@@ -68,18 +68,19 @@ $(function(){
 		})
 		
 		//加入书架
-		var db=openDatabase("bookcase","1.0","书架",1024*1024,function(){});
+		var db=openDatabase("bookcase","1.0","书架",1024*1024,function(){
+//			alert('找到sql');
+		});
 				db.transaction(function(tx){
 					tx.executeSql('select id from bookcase',[],function(tx,rs){
 						for(var i=0;i<rs.rows.length;i++){
 							var ar=rs.rows[i].id;
-							
 							$.getJSON("http://query.yahooapis.com/v1/public/yql",
 							{ q: "select * from json where url='http://api.zhuishushenqi.com/book/"+ar+"'",format: "json"},
 							function(data){
-								console.log(data)
+//								alert(data)
 								var dt=data.query.results.json;
-										var imgs=dt.cover.substr(7,dt.cover.length-1)
+										var imgs=dt.cover.substr(7,dt.cover.length-1);
 										if(imgs.indexOf('%')!=-1){
 											imgs=decodeURIComponent(imgs);
 										}

@@ -16,18 +16,19 @@ body { background: #b8ca9d; }
 #conter h4 { width: 100%; height: 7%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 185%; text-align: center; }
 #conter #ct { width: 100%; height: 93%; overflow: auto; text-indent: 2em; font-size: 0.96rem; letter-spacing: 0.24rem; }
 
-#top1 { width: 100%; height: 8%; background: darkorange; position: absolute; top: 0; left: 0; display: none; text-align: center; line-height: 225%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+#top1 { width: 100%; height: 1.28rem; background: darkorange; position: absolute; top: 0; left: 0; display: none; text-align: center; line-height: 1.28rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+#top1 img { position: absolute; top: 0; left: 0.28rem; }
 
-#bottom { width: 100%; height: 10%; background: darkorange; position: absolute; bottom: 0; left: 0; display: none; }
+#bottom { width: 100%; height: 2.56rem; background: darkorange; position: absolute; bottom: 0; left: 0; display: none; }
 
-#bottom ul { height: 50%; list-style: none; display: flex; justify-content: space-around; }
+#bottom ul { height: 1.28rem; list-style: none; display: flex; justify-content: space-around; }
 #bottom ul li { display: flex; align-items: center; height: 100%; align-items: center; font-size: 0.96rem; }
 
 #msz { width: 100%; height: 30%; background: white; position: absolute; left: 0; bottom: 0; display: none; }
 
-#msz p { width: 100%; height: 20%; background: wheat; display: flex; justify-content: space-around; margin-top: 0.5rem; }
+#msz p { width: 100%; height: 25%; background: wheat; display: flex; justify-content: space-around; align-items: center; margin-top: 0.5rem; }
 
-#msz p:nth-child(1) span { width: 2rem; height: 1.6rem; border: 1px solid gray; text-align: center; }
+#msz p span { width: 2rem; height: 100%; border: 1px solid gray; display: flex; align-items: center; justify-content: center; }
 
 #msz ol { list-style: none; height: 30%; display: flex; justify-content: space-around; align-items: center; margin-top: 0.5rem; }
 
@@ -53,9 +54,9 @@ body { background: #b8ca9d; }
 
 #jju p { display: flex; height: 100%; align-items: center; }
 
-#syz { height: 50%; display: flex; justify-content: space-between; padding: 0 0.64rem; border-bottom: 1px solid #d4c4a6; }
+#syz { height: 1.28rem; display: flex; justify-content: space-between; padding: 0 0.64rem; border-bottom: 1px solid #d4c4a6; }
 #syz span { height: 100%; }
-#syz span b { font-weight: normal; font-size: 0.48rem; height: 100%; vertical-align: top; line-height: 280%; }
+#syz span b { font-weight: normal; font-size: 0.48rem; height: 100%; vertical-align: top; line-height: 1.28rem; }
 
 .bag { background: rgba(139, 156, 146, 0.63); }
 
