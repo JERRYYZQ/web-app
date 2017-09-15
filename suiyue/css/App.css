@@ -74,4 +74,6 @@ footer > ul > li > b { font-size: 0.48rem; font-weight: normal; }
 
 .logbg { color: #ccc; }
 
+#sjyd { display: flex; align-items: center; justify-content: center; }
+
 /*# sourceMappingURL=App.css.map */

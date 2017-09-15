@@ -3,6 +3,11 @@ $(function(){
 		var db=openDatabase("bookcase","1.0","书架",1024*1024,function(){});
 				db.transaction(function(tx){
 					tx.executeSql('select id from bookcase',[],function(tx,rs){
+						if(rs.rows.length==0){
+							$('#sjyd').text('还没有书？快去收藏几本书吧！');$('#sjyd').css('display','flex')
+						}else{
+							$('#sjyd').text('');$('#sjyd').css('display','inline-block');
+						}
 						for(var i=0;i<rs.rows.length;i++){
 							var ar=rs.rows[i].id;
 							$.getJSON("http://query.yahooapis.com/v1/public/yql",
