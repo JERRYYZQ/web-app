@@ -107,5 +107,13 @@ $(function(){
 		$(this).addClass('current');
 	})
 	
-		
+	
+	function defa(node){
+		$(node).on('touchmove',function(ev){
+			ev.preventDefault();
+		console.log('b')
+		})
+	}
+	defa('header');
+	defa('footer');
 })
