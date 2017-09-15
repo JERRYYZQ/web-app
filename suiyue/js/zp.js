@@ -116,4 +116,5 @@ $(function(){
 	}
 	defa('header');
 	defa('footer');
+	defa('#yincang');
 })

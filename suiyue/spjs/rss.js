@@ -46,7 +46,7 @@ $(function(){
 						index=og;
 						var firstLink;
 						var firstTitle;
-						$("*[data-orgin="+index+"]").addClass('bag').siblings('li').removeClass('bag');
+//						$("*[data-orgin="+index+"]").addClass('bag').siblings('li').removeClass('bag');
 						firstLink=dt[og].link;
 						firstTitle=dt[og].title;
 						firstLink=encodeURIComponent(firstLink)
@@ -154,9 +154,9 @@ $(function(){
             		index++;
 				}
             	localStorage.setItem(id,index);
-            	var lin=$("*[data-orgin="+index+"]").attr('data-link');
-            	$("*[data-orgin="+index+"]").addClass('bag').siblings('li').removeClass('bag');
-				var hd=$("*[data-orgin="+index+"]").find('span').text();
+//          	var lin=$("*[data-orgin="+index+"]").attr('data-link');
+//          	$("*[data-orgin="+index+"]").addClass('bag').siblings('li').removeClass('bag');
+//				var hd=$("*[data-orgin="+index+"]").find('span').text();
 				lin=encodeURIComponent(lin);//编码
 					getContent(lin,hd)
             })
@@ -172,9 +172,9 @@ $(function(){
              			alert('当前是第一章');
              		}
                	localStorage.setItem(id,index);
-            	var lin=$("*[data-orgin="+index+"]").attr('data-link');
-            	$("*[data-orgin="+index+"]").addClass('bag').siblings('li').removeClass('bag');
-				var hd=$("*[data-orgin="+index+"]").find('span').text();
+//          	var lin=$("*[data-orgin="+index+"]").attr('data-link');
+//          	$("*[data-orgin="+index+"]").addClass('bag').siblings('li').removeClass('bag');
+//				var hd=$("*[data-orgin="+index+"]").find('span').text();
 				lin=encodeURIComponent(lin);//编码
 				getContent(lin,hd)
             })
