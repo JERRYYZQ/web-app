@@ -19,38 +19,6 @@ $(function(){
 							$("<li data-link='"+dt[i].link+"'"+"data-orgin='"+i+"'"+"><span>"+dt[i].title+"</span></li>").appendTo('#list')
 						}
 				})
-				//一件底部
-				$('#top').on('touchend',function(){ 
-					var h=$('#list')[0].scrollHeight;
-					var that=$(this);
-					$('#list').animate({scrollTop: h+'px'}, 800,function(){
-						that.hide();
-						$('#bom').show();
-					});
-					return false; 
-				}); 
-				//一键顶部
-				$('#bom').on('touchend',function(){ 
-					var that=$(this);
-					$('#list').animate({scrollTop: 0}, 800,function(){
-						that.hide();
-						$('#top').show();
-					});
-					return false; 
-				});
-				//正序，倒叙
-				var int=0;
-				$('#tl').on('touchend','span:last',function(){
-					$('#list>li').each(function(){
-						$(this).prependTo('#list')
-					})
-					if(int%2==0){
-						$(this).text('正序')
-					}else{
-						$(this).text('倒序')
-					}
-					int++;
-				})
 				//获取内容封装
 				function getContent(lin,hd){
 					$.getJSON("http://query.yahooapis.com/v1/public/yql",
@@ -65,17 +33,19 @@ $(function(){
 				if(!localStorage.getItem(id)){
 					localStorage.setItem(id,'0');
 				}
-				var firstLink;
-				var firstTitle;
 				var len;
+				console.log(id)
 				$.getJSON("http://query.yahooapis.com/v1/public/yql",
 					{ q: "select * from json where url='http://api.zhuishushenqi.com/mix-atoc/"+id+"?view=chapters"+"'",format: "json"},
 					function(data){
+						console.log(data)
 						var dt=data.query.results.json.mixToc.chapters;
 						    len=dt.length;
 						var og=parseInt(localStorage.getItem(id));
 						console.log(og)
 						index=og;
+						var firstLink;
+						var firstTitle;
 						$("*[data-orgin="+index+"]").addClass('bag').siblings('li').removeClass('bag');
 						firstLink=dt[og].link;
 						firstTitle=dt[og].title;
@@ -101,7 +71,6 @@ $(function(){
 							getContent(lin,hd);
 					}
 				})
-				
 				
 				//加入书架,创建数据库
 				var db=openDatabase("bookcase","1.0","书架",1024*1024,function(){});
@@ -173,7 +142,76 @@ $(function(){
             		}
             		
            		})
-            
+             //下一章节
+            $('.xzz').on('touchstart',function(){
+            	$(this).addClass('bag');
+            })
+            $('.xzz').on('touchend',function(){
+            	$(this).removeClass('bag');
+				if(index==len-1){
+					alert('当前是最后一章')
+				}else{
+            		index++;
+				}
+            	localStorage.setItem(id,index);
+            	var lin=$("*[data-orgin="+index+"]").attr('data-link');
+            	$("*[data-orgin="+index+"]").addClass('bag').siblings('li').removeClass('bag');
+				var hd=$("*[data-orgin="+index+"]").find('span').text();
+				lin=encodeURIComponent(lin);//编码
+					getContent(lin,hd)
+            })
+            //上一章
+            $('.sasa').on('touchstart',function(){
+            	$(this).addClass('bag');
+            })
+             $('.sasa').on('touchend',function(){
+             	$(this).removeClass('bag');
+             		if(index!=0){
+             			index--;
+             		}else{
+             			alert('当前是第一章');
+             		}
+               	localStorage.setItem(id,index);
+            	var lin=$("*[data-orgin="+index+"]").attr('data-link');
+            	$("*[data-orgin="+index+"]").addClass('bag').siblings('li').removeClass('bag');
+				var hd=$("*[data-orgin="+index+"]").find('span').text();
+				lin=encodeURIComponent(lin);//编码
+				getContent(lin,hd)
+            })
+            	//一件底部
+				$('#top').on('touchend',function(){ 
+					var h=$('#list')[0].scrollHeight;
+					var that=$(this);
+					$('#list').animate({scrollTop: h+'px'}, 800,function(){
+						that.hide();
+						$('#bom').show();
+					});
+					return false; 
+				}); 
+				//一键顶部
+				$('#bom').on('touchend',function(){ 
+					var that=$(this);
+					$('#list').animate({scrollTop: 0}, 800,function(){
+						that.hide();
+						$('#top').show();
+					});
+					return false; 
+				});
+				//书名
+				$('#top1').find('span:first').text(title);
+				//正序，倒叙
+				var int=0;
+				$('#tl').on('touchend','span:last',function(){
+					$('#list>li').each(function(){
+						$(this).prependTo('#list')
+					})
+					if(int%2==0){
+						$(this).text('正序')
+					}else{
+						$(this).text('倒序')
+					}
+					int++;
+				})
 			//小说阅读体验，设置
 			var n=0;
 			var ctTouch=true;
@@ -184,6 +222,7 @@ $(function(){
 				ctTouch=false;
 			})
 			$('#ct').on('touchend',function(){
+				console.log('yy')
 				if(ctTouch){
 					if(n%2==0){
 						$("#top1").show();
@@ -195,15 +234,21 @@ $(function(){
 					n++;
 				}
 			})
-			      //点击目录第一栏返回阅读
+			 //点击设置出现
+		    $("#sz").on('touchend',function(){
+		    	$('#ct').nextAll().hide()
+		    	$("#msz").show();
+		    })
+		    $('#ju').on('touchend',function(){
+		    	$('#ct').nextAll().hide()
+		    	$("#jju").show();
+		    })
+			//目录返回阅读
 		    $("#tl").on('touchend','img',function(){
 		       	$('#link').hide().siblings('#conter').show();
 		    })
-			//书名
-			$('#top1').find('span:first').text(title);
 			//返回主页
 			$('#top1>img').on('touchend',function(){
-//				$('#conter').hide().siblings('#link').show();
 				location.href='../index.html'
 			})
 			//点击短时间变色
@@ -214,9 +259,8 @@ $(function(){
 					that.removeClass('bag');
 				})
 			})
-				//返回目录
+			//返回目录
 			$('#bottom #mml').on('touchend',function(){
-			// window.location.reload();
 				$("#link").show();
 				$("#conter").hide();
 				$('#ct').nextAll().hide()
@@ -255,15 +299,7 @@ $(function(){
 		    	}
 		    	ye++;
 		    })
-		    //点击设置出现
-		    $("#sz").on('touchend',function(){
-		    	$('#ct').nextAll().hide()
-		    	$("#msz").show();
-		    })
-		    $('#ju').on('touchend',function(){
-		    	$('#ct').nextAll().hide()
-		    	$("#jju").show();
-		    })
+		   
 		    //间距减
 		    var jl=4;
 		    $("#jju").on('touchstart','span:first',function(){
@@ -288,44 +324,9 @@ $(function(){
 			    	$("#ct").css('letter-spacing',jl);
 		    	}
 		    })
-		          //点击目录第一栏返回首页
+		    //返回首页
 		    $("#tl").on('touchend','span:first',function(){
 		       	location.href="../index.html"
 		    })
-            //下一章节
-            $('.xzz').on('touchstart',function(){
-            	$(this).addClass('bag');
-            })
-            $('.xzz').on('touchend',function(){
-            	$(this).removeClass('bag');
-				if(index==len-1){
-					alert('当前是最后一章')
-				}else{
-            		index++;
-				}
-            	localStorage.setItem(id,index);
-            	var lin=$("*[data-orgin="+index+"]").attr('data-link');
-            	$("*[data-orgin="+index+"]").addClass('bag').siblings('li').removeClass('bag');
-				var hd=$("*[data-orgin="+index+"]").find('span').text();
-				lin=encodeURIComponent(lin);//编码
-					getContent(lin,hd)
-            })
-            //上一章
-            $('.sasa').on('touchstart',function(){
-            	$(this).addClass('bag');
-            })
-             $('.sasa').on('touchend',function(){
-             	$(this).removeClass('bag');
-             		if(index!=0){
-             			index--;
-             		}else{
-             			alert('当前是第一章');
-             		}
-               	localStorage.setItem(id,index);
-            	var lin=$("*[data-orgin="+index+"]").attr('data-link');
-            	$("*[data-orgin="+index+"]").addClass('bag').siblings('li').removeClass('bag');
-				var hd=$("*[data-orgin="+index+"]").find('span').text();
-				lin=encodeURIComponent(lin);//编码
-				getContent(lin,hd)
-            })
+           
 })
